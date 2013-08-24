@@ -8,16 +8,16 @@
 #=======================================================================
 
 if [ -d /usr/local/eclipse ] ; then
-	echo "== Removing eclipse install folder =="
-	rm -r /usr/local/eclipse
+    echo "== Removing eclipse install folder =="
+    rm -r /usr/local/eclipse
 fi
 
 if [ -h /usr/bin/eclipse ] ; then
-	echo "== Removing link in /usr/bin =="
-	rm /usr/bin/eclipse
+    echo "== Removing link in /usr/bin =="
+    rm /usr/bin/eclipse
 fi
 
 if [ -e /usr/share/applications/eclipse.desktop ] ; then
-	echo "== Removing .desktop icon =="
-	rm -r /usr/share/applications/eclipse.desktop
+    echo "== Removing .desktop icon =="
+    rm -r /usr/share/applications/eclipse.desktop
 fi

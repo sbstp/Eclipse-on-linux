@@ -3,7 +3,7 @@
 # 2013
 # You must install java to use eclipse! (apt-get install openjdk-7-jdk)
 # Will download eclipse and extract it to /usr/local/eclipse.
-# Will create a symbolic link /usr/local/eclipse/eclipse pointing to /usr/bin/eclipse.
+# Will create a symbolic link in /usr/bin pointing to /usr/local/eclipse/eclipse
 # Will create a .desktop file in /usr/share/applications/eclipse.desktop
 #=======================================================================
 
