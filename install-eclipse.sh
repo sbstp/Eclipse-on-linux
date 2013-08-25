@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 #=======================================================================
 # 2013 for eclipse kepler 4.3
 # You must install java to use eclipse! (apt-get install openjdk-7-jdk)

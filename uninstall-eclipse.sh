@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 #=======================================================================
 # 2013
 # Remove the eclipse you installed with the other script.
