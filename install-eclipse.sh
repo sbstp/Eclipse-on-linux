@@ -1,6 +1,6 @@
 #!/bin/sh
 #=======================================================================
-# 2013 for eclipse kepler 4.3
+# 2013 for eclipse kepler 4.3 (jdt)
 # You must install java to use eclipse! (apt-get install openjdk-7-jdk)
 # Will download eclipse and extract it to /usr/local/eclipse.
 # Will create a symbolic link in /usr/bin pointing to /usr/local/eclipse/eclipse
