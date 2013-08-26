@@ -9,13 +9,22 @@
 
 EclipseVersion="4.3";
 JavaMinVer="1.7";
+InstallPath="/usr/local/eclipse";
 
-if [ "$(id -u)" != "0" ]; then
+if [ "$(id -u)" != "0" ] ; then
    echo "This script must be run as root"
    exit 1
 fi
 
-echo "This script will download and install Eclipse $EclipseVersion on your computer"
+if [ $# -gt 1 ] ; then
+   echo "Usage: $0 [install_path]";
+   echo "Default path is $InstallPath";
+   exit 2;
+elif [ $# -eq 1] ; then
+   InstallPath=$1;
+fi
+
+echo "This script will download and install Eclipse $EclipseVersion on your computer in $InstallPath"
 echo "Are you sure you want to continue ? [Y]es [N]o"
 valid=false;
 while [ $valid != true ]
@@ -69,7 +78,7 @@ else
     done
 fi
 
-if [ -d /usr/local/eclipse ] ; then
+if [ -d $InstallPath ] ; then
     echo "Eclipse seems to be installed on this computer..."
     valid=false;
     echo "What should we do ? [O]verwrite, [C]ancel or [I]gnore"
@@ -106,10 +115,10 @@ echo "== Extracting eclipse =="
 tar -xzf $tmp
 
 echo "== Moving folder ==" 
-mv eclipse /usr/local/eclipse
+mv eclipse $InstallPath
 
 echo "== Creating link =="
-ln -s /usr/local/eclipse/eclipse /usr/local/bin
+ln -s $InstallPath/eclipse /usr/local/bin
 
 echo "== Create .desktop file =="
 echo "[Desktop Entry]
@@ -119,11 +128,13 @@ Comment=Eclipse IDE
 Version=4.3
 Categories=Development;IDE;
 Exec=eclipse
-Icon=/usr/local/eclipse/icon.xpm
+Icon=$InstallPath/icon.xpm
 " > /usr/share/applications/eclipse.desktop
 
 echo "== Copying uninstall script =="
-cp uninstall-eclipse.sh /usr/local/eclipse/uninstall-eclipse.sh
+cp uninstall-eclipse.sh $InstallPath/uninstall-eclipse.sh
 
 echo "== Cleaning up =="
 rm $tmp
+
+exit 0
