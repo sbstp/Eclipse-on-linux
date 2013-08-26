@@ -8,6 +8,7 @@
 #=======================================================================
 
 EclipseVersion="4.3";
+JavaMinVer="1.7";
 
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root"
@@ -34,7 +35,39 @@ do
         esac
 done
 
+echo "Looking for installed jvms";
+JavaOk=false;
+Version=$(java -version 2>&1 | grep "java version"  | awk '{print $NF}' | sed s/\"//g);
 
+if [ $(echo $Version | wc -l) -lt 1 ] ; then
+    echo "No jvm was detected. Try \"sudo apt-get install openjdk-7-jdk\"";
+fi
+
+if [ $( echo $Version | grep "^$JavaMinVer" | wc -l) -eq "1" ] ; then
+    JavaOk=true;
+    echo "Detected java version was: $Version OK!";
+else
+    echo "Detected java version was: $Version"
+    echo "Expected java $JavaMinVer ";
+    valid=false;
+    echo "What should we do ? [I]gnore or [C]ancel"
+    while [ $valid != true ]
+    do
+        read choice
+        case $choice in
+            "c"|"C")
+                echo "Exiting the script, nothing was changed on your computer !"
+                exit 0
+                ;;
+            "i"|"I")
+                valid=true
+                ;;
+            *)
+                echo "Please make a valid selection : [I]gnore or [C]ancel";
+                ;;
+        esac
+    done
+fi
 
 if [ -d /usr/local/eclipse ] ; then
     echo "Eclipse seems to be installed on this computer..."
@@ -76,7 +109,7 @@ echo "== Moving folder =="
 mv eclipse /usr/local/eclipse
 
 echo "== Creating link =="
-ln -s /usr/local/eclipse/eclipse /usr/bin
+ln -s /usr/local/eclipse/eclipse /usr/local/bin
 
 echo "== Create .desktop file =="
 echo "[Desktop Entry]
@@ -88,6 +121,9 @@ Categories=Development;IDE;
 Exec=eclipse
 Icon=/usr/local/eclipse/icon.xpm
 " > /usr/share/applications/eclipse.desktop
+
+echo "== Copying uninstall script =="
+cp uninstall-eclipse.sh /usr/local/eclipse/uninstall-eclipse.sh
 
 echo "== Cleaning up =="
 rm $tmp
