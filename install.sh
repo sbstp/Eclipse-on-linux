@@ -121,7 +121,7 @@ echo "== Creating link =="
 ln -s $InstallPath/eclipse /usr/local/bin
 
 echo "== Copying pretty icon =="
-cp pretty-icon.xpm $InstallPath/pretty-icon.xpm
+cp "pretty\-icon.xpm" "$InstallPath/pretty\-icon.xpm"
 
 echo "== Create .desktop file =="
 echo "[Desktop Entry]
@@ -135,7 +135,7 @@ Icon=$InstallPath/pretty-icon.xpm
 " > /usr/share/applications/eclipse.desktop
 
 echo "== Copying uninstall script =="
-cp uninstall-eclipse.sh $InstallPath/uninstall-eclipse.sh
+cp "uninstall\-eclipse.sh" "$InstallPath/uninstall\-eclipse.sh"
 
 echo "== Cleaning up =="
 rm $tmp
