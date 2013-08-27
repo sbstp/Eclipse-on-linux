@@ -120,6 +120,9 @@ mv eclipse $InstallPath
 echo "== Creating link =="
 ln -s $InstallPath/eclipse /usr/local/bin
 
+echo "== Copying pretty icon =="
+cp pretty-icon.xpm $InstallPath/pretty-icon.xpm
+
 echo "== Create .desktop file =="
 echo "[Desktop Entry]
 Name=Eclipse
@@ -128,7 +131,7 @@ Comment=Eclipse IDE
 Version=4.3
 Categories=Development;IDE;
 Exec=eclipse
-Icon=$InstallPath/icon.xpm
+Icon=$InstallPath/pretty-icon.xpm
 " > /usr/share/applications/eclipse.desktop
 
 echo "== Copying uninstall script =="
