@@ -7,14 +7,29 @@
 # Will remove /usr/share/applications/eclipse.desktop
 #=======================================================================
 
-if [ -d /usr/local/eclipse ] ; then
-    echo "== Removing eclipse install folder =="
-    rm -r /usr/local/eclipse
+InstallPath="/usr/local/eclipse";
+
+if [ "$(id -u)" != "0" ] ; then
+   echo "This script must be run as root"
+   exit 1
 fi
 
-if [ -h /usr/bin/eclipse ] ; then
-    echo "== Removing link in /usr/bin =="
-    rm /usr/bin/eclipse
+if [ $# -gt 1 ] ; then
+   echo "Usage: $0 [install_path]";
+   echo "Default path is $InstallPath";
+   exit 2;
+elif [ $# -eq 1] ; then
+   InstallPath=$1;
+fi
+
+if [ -d $InstallPath ] ; then
+    echo "== Removing eclipse install folder =="
+    rm -r $InstallPath
+fi
+
+if [ -h /usr/local/bin/eclipse ] ; then
+    echo "== Removing link in /usr/local/bin =="
+    rm /usr/local/bin/eclipse
 fi
 
 if [ -e /usr/share/applications/eclipse.desktop ] ; then

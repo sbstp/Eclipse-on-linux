@@ -88,7 +88,7 @@ if [ -d $InstallPath ] ; then
         case $choice in
             "o"|"O")
                 valid=true
-                /bin/sh uninstall-eclipse.sh
+                /bin/sh uninstall.sh
                 ;;
             "c"|"C")
                 echo "Exiting the script, nothing was changed on your computer !"
@@ -106,6 +106,7 @@ fi
 
 tmp="$$.tar.gz"
 
+PrevDir=$PWD
 cd /tmp
 
 echo "== Downloading eclipse =="
@@ -121,7 +122,7 @@ echo "== Creating link =="
 ln -s $InstallPath/eclipse /usr/local/bin
 
 echo "== Copying pretty icon =="
-cp "pretty\-icon.xpm" "$InstallPath/pretty\-icon.xpm"
+cp "$PrevDir/icon2.xpm" "$InstallPath/icon2.xpm"
 
 echo "== Create .desktop file =="
 echo "[Desktop Entry]
@@ -131,11 +132,11 @@ Comment=Eclipse IDE
 Version=4.3
 Categories=Development;IDE;
 Exec=eclipse
-Icon=$InstallPath/pretty-icon.xpm
+Icon=$InstallPath/icon2.xpm
 " > /usr/share/applications/eclipse.desktop
 
 echo "== Copying uninstall script =="
-cp "uninstall\-eclipse.sh" "$InstallPath/uninstall\-eclipse.sh"
+cp "$PrevDir/uninstall.sh" "$InstallPath/uninstall.sh"
 
 echo "== Cleaning up =="
 rm $tmp
