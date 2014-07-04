@@ -1,13 +1,13 @@
 #!/bin/sh
 #=======================================================================
-# 2013 for eclipse kepler 4.3 (jdt)
+# 2014 for eclipse Luna 4.4 (jdt)
 # You must install java to use eclipse! (apt-get install openjdk-7-jdk)
 # Will download eclipse and extract it to /usr/local/eclipse.
 # Will create a symbolic link in /usr/bin pointing to /usr/local/eclipse/eclipse
 # Will create a .desktop file in /usr/share/applications/eclipse.desktop
 #=======================================================================
 
-EclipseVersion="4.3";
+EclipseVersion="4.4";
 JavaMinVer="1.7";
 InstallPath="/usr/local/eclipse";
 
@@ -110,7 +110,7 @@ PrevDir=$PWD
 cd /tmp
 
 echo "== Downloading eclipse =="
-wget -O $tmp "http://mirror.csclub.uwaterloo.ca/eclipse/technology/epp/downloads/release/kepler/R/eclipse-java-kepler-R-linux-gtk-x86_64.tar.gz"
+wget -O $tmp "http://mirror.csclub.uwaterloo.ca/eclipse/technology/epp/downloads/release/luna/R/eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz"
 
 echo "== Extracting eclipse =="
 tar -xzf $tmp
@@ -129,7 +129,7 @@ echo "[Desktop Entry]
 Name=Eclipse
 Type=Application
 Comment=Eclipse IDE
-Version=4.3
+Version=4.4
 Categories=Development;IDE;
 Exec=eclipse
 Icon=$InstallPath/icon2.xpm
