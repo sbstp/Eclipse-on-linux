@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #=======================================================================
 # 2013
 # Remove the eclipse you installed with the other script.
@@ -18,7 +18,7 @@ if [ $# -gt 1 ] ; then
    echo "Usage: $0 [install_path]";
    echo "Default path is $InstallPath";
    exit 2;
-elif [ $# -eq 1] ; then
+elif [ $# -eq 1 ] ; then
    InstallPath=$1;
 fi
 
